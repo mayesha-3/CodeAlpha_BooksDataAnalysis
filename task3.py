@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import plotly.express as px
 
 # Page config
 st.set_page_config(page_title="📚 Book Genre Dashboard", layout="wide")
@@ -136,3 +137,4 @@ with col_right:
     st.markdown("Developed by [Mayesha Afrooz](https://www.linkedin.com/in/mayeshaafrooz/)")
 
     st.markdown("Data Source: [Books to Scrape](http://books.toscrape.com/)")
+
