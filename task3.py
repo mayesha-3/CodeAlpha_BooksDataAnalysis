@@ -100,7 +100,7 @@ with col2:
     rating_counts["Percentage"] = rating_counts.apply(lambda row: row["Count"] / genre_totals[row["Genre"]] * 100, axis=1)
 
     pink_palette = [
-        "#FFC0CB", "#FFB6C1", "#FF69B4", "#FF1493", "#DB7093", "#C71585", "#E75480", "#DE5D83"
+        "#000000", "#2C2C2C", "#4B3F4E", "#6E4C6E", "#8B5C7E", "#A86C8C", "#C48C9E", "#E1A6B4"
     ]
     
     # Create histogram-style grouped bar chart
@@ -143,5 +143,6 @@ with col_right:
     st.markdown("Developed by [Mayesha Afrooz](https://www.linkedin.com/in/mayeshaafrooz/)")
 
     st.markdown("Data Source: [Books to Scrape](http://books.toscrape.com/)")
+
 
 
