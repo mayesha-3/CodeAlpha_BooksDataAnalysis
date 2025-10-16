@@ -98,10 +98,24 @@ with col2:
     genre_totals = filtered_df["Genre"].value_counts().to_dict()
     rating_counts["Percentage"] = rating_counts.apply(lambda row: row["Count"] / genre_totals[row["Genre"]] * 100, axis=1)
 
-    fig3, ax3 = plt.subplots()
-    sns.barplot(x="Rating_Num", y="Percentage", hue="Genre", data=rating_counts, ax=ax3, color="#BC5EC9")
-    ax3.set_ylabel("Percentage (%)")
-    st.pyplot(fig3)
+    fig3 = px.bar(
+        rating_counts,
+        x="Rating_Num",
+        y="Percentage",
+        color="Genre",
+        hover_data=["Genre", "Rating_Num", "Percentage"],
+        labels={"Rating_Num": "Rating", "Percentage": "Percentage (%)"},
+        color_discrete_sequence=["#BC5EC9"]
+    )
+    
+    fig3.update_layout(
+        yaxis_title="Percentage (%)",
+        xaxis_title="Rating",
+        legend_title="Genre",
+        bargap=0.2
+    )
+
+st.plotly_chart(fig3, use_container_width=True)
 
 
 # Data preview
@@ -120,4 +134,5 @@ st.markdown("___")
 col_left, col_right = st.columns([3, 1])
 with col_right:
     st.markdown("Developed by [Mayesha Afrooz](https://www.linkedin.com/in/mayeshaafrooz/)")
+
     st.markdown("Data Source: [Books to Scrape](http://books.toscrape.com/)")
