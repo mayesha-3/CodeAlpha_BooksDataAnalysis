@@ -99,24 +99,30 @@ with col2:
     genre_totals = filtered_df["Genre"].value_counts().to_dict()
     rating_counts["Percentage"] = rating_counts.apply(lambda row: row["Count"] / genre_totals[row["Genre"]] * 100, axis=1)
 
-    fig3 = px.bar(
+    pink_palette = [
+        "#FFC0CB", "#FFB6C1", "#FF69B4", "#FF1493", "#DB7093", "#C71585", "#E75480", "#DE5D83"
+    ]
+    
+    # Create histogram-style grouped bar chart
+    fig3 = px.histogram(
         rating_counts,
         x="Rating_Num",
         y="Percentage",
         color="Genre",
+        barmode="group",
         hover_data=["Genre", "Rating_Num", "Percentage"],
         labels={"Rating_Num": "Rating", "Percentage": "Percentage (%)"},
-        color_discrete_sequence=["#BC5EC9"]
+        color_discrete_sequence=pink_palette
     )
-    
+
     fig3.update_layout(
         yaxis_title="Percentage (%)",
         xaxis_title="Rating",
         legend_title="Genre",
-        bargap=0.2
+        bargap=0.15
     )
-
-st.plotly_chart(fig3, use_container_width=True)
+    
+    st.plotly_chart(fig3, use_container_width=True)
 
 
 # Data preview
@@ -137,4 +143,5 @@ with col_right:
     st.markdown("Developed by [Mayesha Afrooz](https://www.linkedin.com/in/mayeshaafrooz/)")
 
     st.markdown("Data Source: [Books to Scrape](http://books.toscrape.com/)")
+
 
